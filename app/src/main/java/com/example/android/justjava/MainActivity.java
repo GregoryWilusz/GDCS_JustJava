@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -32,24 +33,28 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        EditText enteredName = (EditText) findViewById(R.id.name_field);
+        String customerName = enteredName.getText().toString();
+
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
 
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        displayMessage(createOrderSummary(5, hasWhippedCream, hasChocolate));
+        displayMessage(createOrderSummary(customerName, 5, hasWhippedCream, hasChocolate));
     }
 
     /**
      *
      * @param price of the order
+     * @param name entered by the customer
      * @param addWhippedCream is whether or not the user wants whipped cream topping
      * @param addChocolate is whether or not the user wants chocolate topping
      * @return text summary
      */
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
-        String orderSummary = "Name: Lyla the Labyrinth" +
+    private String createOrderSummary(String name, int price, boolean addWhippedCream, boolean addChocolate) {
+        String orderSummary = "Name: " + name +
                 "\nAdd whipped cream? " + addWhippedCream +
                 "\nAdd chocolate? " + addChocolate +
                 "\nQuantity: " + quantity +
