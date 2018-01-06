@@ -5,5 +5,7 @@
     <string name="order_btn_txt">Order</string>
     <string name="incr_btn_txt">+</string>
     <string name="decr_btn_txt">-</string>
-    <string name="price">Price</string>
+    <string name="orderSummary">Order summary</string>
+    <string name="checkBoxToppings">Whipped cream</string>
+    <string name="toppings">Toppings</string>
 </resources>
