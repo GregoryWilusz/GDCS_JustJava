@@ -17,11 +17,11 @@
         android:textAllCaps="true" />
 
     <CheckBox
+        android:id="@+id/whipped_cream_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:paddingLeft="24dp"
-        android:onClick="isTopping"
         android:text="@string/checkBoxToppings"
         android:textSize="16sp" />
 

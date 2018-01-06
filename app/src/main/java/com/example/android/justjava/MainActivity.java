@@ -9,7 +9,9 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 
@@ -19,7 +21,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    boolean hasWhippedCream = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +32,24 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        displayMessage(createOrderSummary(7, hasWhippedCream));
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        displayMessage(createOrderSummary(5, hasWhippedCream));
 
     }
 
-
-    private String createOrderSummary(int price, boolean withWhippedCream) {
-        String orderSummary = "Name: Lyla the Labyrinth\nQuantity: " + quantity +
-                "\nAdd whipped cream? " + withWhippedCream +
+    /**
+     *
+     * @param price of the order
+     * @param addWhippedCream is whether or not the user wants whipped cream topping
+     * @return text summary
+     */
+    private String createOrderSummary(int price, boolean addWhippedCream) {
+        String orderSummary = "Name: Lyla the Labyrinth" +
+                "\nAdd whipped cream? " + addWhippedCream +
                 "\nQuantity: " + quantity +
                 "\nTotal: $" + calculatePrice(price) + "\nThank you!";
         return orderSummary;
-    }
-
-    public void isTopping(View view) {
-        hasWhippedCream = !hasWhippedCream;
     }
 
     /**
