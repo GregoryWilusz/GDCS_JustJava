@@ -26,7 +26,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:paddingLeft="24dp"
-            android:text="@string/checkBoxToppings"
+            android:text="@string/checkBoxWhippedCreamTopping"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chocolate_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingLeft="24dp"
+            android:text="@string/checkBoxChocolateTopping"
             android:textSize="16sp" />
 
 
