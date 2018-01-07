@@ -7,6 +7,7 @@
  */
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -21,9 +23,8 @@ import android.widget.TextView;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    int quantity = 2;
     int coffeePrice = 5;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,19 +91,35 @@ public class MainActivity extends AppCompatActivity {
         return quantity * basePrice;
     }
 
-
     /**
      * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        CharSequence messageTooMany = "You cannot order more than 10 cups of coffee.";
+        CharSequence messageTooFew = "You cannot order less than 1 cup of coffee.";
+
+        if (number >= 10) {
+            Toast.makeText(context, messageTooMany, duration).show();
+        }
+
+        if (number < 2) {
+            Toast.makeText(context, messageTooFew, duration).show();
+        }
     }
 
     /**
      * This method is called when the increment quantity button is clicked.
      */
     public void incrementQuantity(View view) {
+        if (quantity >= 10) {
+            return; // keyword 'return' is used to break from a method
+        }
+
         quantity++;
         displayQuantity(quantity);
     }
@@ -111,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the decrement quantity button is clicked.
      */
     public void decrementQuantity(View view) {
+        if (quantity < 2) {
+            return;
+        }
+
         quantity--;
         displayQuantity(quantity);
     }
