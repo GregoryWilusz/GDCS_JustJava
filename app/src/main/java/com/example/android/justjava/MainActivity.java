@@ -97,26 +97,14 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        CharSequence messageTooMany = "You cannot order more than 10 cups of coffee.";
-        CharSequence messageTooFew = "You cannot order less than 1 cup of coffee.";
-
-        if (number >= 10) {
-            Toast.makeText(context, messageTooMany, duration).show();
-        }
-
-        if (number < 2) {
-            Toast.makeText(context, messageTooFew, duration).show();
-        }
     }
 
     /**
      * This method is called when the increment quantity button is clicked.
      */
     public void incrementQuantity(View view) {
-        if (quantity >= 10) {
+        if (quantity == 10) {
+            Toast.makeText(this, "You cannot order more than 10 cups of coffee.", Toast.LENGTH_SHORT).show();
             return; // keyword 'return' is used to break from a method
         }
 
@@ -128,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the decrement quantity button is clicked.
      */
     public void decrementQuantity(View view) {
-        if (quantity < 2) {
+        if (quantity == 1) {
+            Toast.makeText(this, "You cannot have less than 1 cup of coffee.", Toast.LENGTH_SHORT).show();
             return;
         }
 
