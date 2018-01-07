@@ -22,6 +22,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    int coffeePrice = 5;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,34 +44,48 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        displayMessage(createOrderSummary(customerName, 5, hasWhippedCream, hasChocolate));
+        displayMessage(createOrderSummary(customerName, coffeePrice, hasWhippedCream, hasChocolate));
     }
 
     /**
+     * This method creates an order summary
      *
-     * @param price of the order
+     * @param coffeePrice of the order
      * @param name entered by the customer
-     * @param addWhippedCream is whether or not the user wants whipped cream topping
-     * @param addChocolate is whether or not the user wants chocolate topping
+     * @param hasWhippedCream is whether or not the user wants whipped cream topping
+     * @param hasChocolate is whether or not the user wants chocolate topping
      * @return text summary
      */
-    private String createOrderSummary(String name, int price, boolean addWhippedCream, boolean addChocolate) {
+    private String createOrderSummary(String name, int coffeePrice, boolean hasWhippedCream, boolean hasChocolate) {
+        int price = calculatePrice(coffeePrice, hasWhippedCream, hasChocolate);
         String orderSummary = "Name: " + name +
-                "\nAdd whipped cream? " + addWhippedCream +
-                "\nAdd chocolate? " + addChocolate +
+                "\nAdd whipped cream? " + hasWhippedCream +
+                "\nAdd chocolate? " + hasChocolate +
                 "\nQuantity: " + quantity +
-                "\nTotal: $" + calculatePrice(price) + "\nThank you!";
+                "\nTotal: $" + price + "\nThank you!";
         return orderSummary;
     }
 
     /**
      * Calculates the price of the order.
      *
-     * @param pricePerCup is the price of one cup of coffee
-     * @return total price
+     * @param coffeePrice of one cup of coffee
+     * @param hasWhippedCream is whether or not the user wants whipped cream topping
+     * @param hasChocolate is whether or not the user wants whipped cream topping
+     * @return total order price
      */
-    private int calculatePrice(int pricePerCup) {
-        return quantity * pricePerCup;
+    private int calculatePrice(int coffeePrice, boolean hasWhippedCream, boolean hasChocolate) {
+        int whippedCreamPrize = 1;
+        int chocolatePrize = 2;
+        if (hasWhippedCream && hasChocolate) {
+            return quantity * (coffeePrice + whippedCreamPrize + chocolatePrize);
+        } else if (hasChocolate) {
+            return quantity * (coffeePrice + chocolatePrize);
+        } else if (hasWhippedCream) {
+            return quantity * (coffeePrice + whippedCreamPrize);
+        } else {
+            return quantity * coffeePrice;
+        }
     }
 
 
