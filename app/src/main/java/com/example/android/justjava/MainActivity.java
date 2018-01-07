@@ -75,17 +75,19 @@ public class MainActivity extends AppCompatActivity {
      * @return total order price
      */
     private int calculatePrice(int coffeePrice, boolean hasWhippedCream, boolean hasChocolate) {
-        int whippedCreamPrize = 1;
+        int basePrice = coffeePrice;
+        int whippedCreamPrice = 1;
         int chocolatePrize = 2;
-        if (hasWhippedCream && hasChocolate) {
-            return quantity * (coffeePrice + whippedCreamPrize + chocolatePrize);
-        } else if (hasChocolate) {
-            return quantity * (coffeePrice + chocolatePrize);
-        } else if (hasWhippedCream) {
-            return quantity * (coffeePrice + whippedCreamPrize);
-        } else {
-            return quantity * coffeePrice;
+
+        if (hasWhippedCream) {
+            basePrice += whippedCreamPrice;
         }
+
+        if (hasChocolate) {
+            basePrice += chocolatePrize;
+        }
+
+        return quantity * basePrice;
     }
 
 
