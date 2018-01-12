@@ -34,16 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void composeEmailWithOrderSummary(String text, String subject) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("*/*");
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }
-
     /**
      * This method is called when the order button is clicked.
      */
@@ -58,8 +48,24 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         String emailContent = createOrderSummary(customerName, coffeePrice, hasWhippedCream, hasChocolate);
-        String emailSubject = "JustJava order for " + customerName;
+        String emailSubject = "Just Java order for " + customerName;
         composeEmailWithOrderSummary(emailContent, emailSubject);
+    }
+
+    /**
+     * This method invokes an common email intent and creates an email's subject and contens
+     *
+     * @param text is the content of an email message
+     * @param subject of an email
+     */
+    public void composeEmailWithOrderSummary(String text, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        if (intent.resolveActivity(getPackageManager()) != null) { // checks if there is activity on the device to
+            startActivity(intent);                                 // handle this intent
+        }
     }
 
 
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
      * @param name entered by the customer
      * @param hasWhippedCream is whether or not the user wants whipped cream topping
      * @param hasChocolate is whether or not the user wants chocolate topping
-     * @return text summary
+     * @return order text summary
      */
     private String createOrderSummary(String name, int coffeePrice, boolean hasWhippedCream, boolean hasChocolate) {
         int price = calculatePrice(coffeePrice, hasWhippedCream, hasChocolate);
@@ -122,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You cannot order more than 10 cups of coffee.", Toast.LENGTH_SHORT).show();
             return; // keyword 'return' is used to break from a method
         }
-
         quantity++;
         displayQuantity(quantity);
     }
@@ -135,17 +140,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You cannot have less than 1 cup of coffee.", Toast.LENGTH_SHORT).show();
             return;
         }
-
         quantity--;
         displayQuantity(quantity);
     }
-
-//    /**
-//     * This method displays the given text on the screen.
-//     */
-//    private void displayMessage(String message) {
-//        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-//        orderSummaryTextView.setText(message);
-//    }
-
 }
