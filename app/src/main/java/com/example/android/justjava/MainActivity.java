@@ -7,12 +7,10 @@
  */
 package com.example.android.justjava;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         String emailContent = createOrderSummary(customerName, coffeePrice, hasWhippedCream, hasChocolate);
-        String emailSubject = "Just Java order for " + customerName;
+        String emailSubject = getString(R.string.subject) + customerName;
         composeEmailWithOrderSummary(emailContent, emailSubject);
     }
 
@@ -80,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(String name, int coffeePrice, boolean hasWhippedCream, boolean hasChocolate) {
         int price = calculatePrice(coffeePrice, hasWhippedCream, hasChocolate);
-        String orderSummary = "Name: " + name +
-                "\nAdd whipped cream? " + hasWhippedCream +
-                "\nAdd chocolate? " + hasChocolate +
-                "\nQuantity: " + quantity +
-                "\nTotal: $" + price + "\nThank you!";
+        String orderSummary = getString(R.string.name) + name +
+                "\n" + getString(R.string.add_whipped_cream) + hasWhippedCream +
+                "\n" + getString(R.string.add_chocolate) + hasChocolate +
+                "\n" + getString(R.string.quantity_text) + quantity +
+                "\n" + getString(R.string.total) + price + "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
 
@@ -125,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void incrementQuantity(View view) {
         if (quantity == 10) {
-            Toast.makeText(this, "You cannot order more than 10 cups of coffee.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_max_ordered), Toast.LENGTH_SHORT).show();
             return; // keyword 'return' is used to break from a method
         }
         quantity++;
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void decrementQuantity(View view) {
         if (quantity == 1) {
-            Toast.makeText(this, "You cannot have less than 1 cup of coffee.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_min_ordered), Toast.LENGTH_SHORT).show();
             return;
         }
         quantity--;
