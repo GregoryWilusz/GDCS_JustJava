@@ -12,7 +12,6 @@
     <string name="quantity">2</string>
     <string name="incr_btn_txt">+</string>
 
-    <string name="orderSummary">Order summary</string>
     <string name="order_btn_txt">Order</string>
 
 </resources>

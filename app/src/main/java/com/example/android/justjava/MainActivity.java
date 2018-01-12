@@ -8,6 +8,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void composeEmailWithOrderSummary(String text, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
@@ -45,8 +57,11 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        displayMessage(createOrderSummary(customerName, coffeePrice, hasWhippedCream, hasChocolate));
+        String emailContent = createOrderSummary(customerName, coffeePrice, hasWhippedCream, hasChocolate);
+        String emailSubject = "JustJava order for " + customerName;
+        composeEmailWithOrderSummary(emailContent, emailSubject);
     }
+
 
     /**
      * This method creates an order summary
@@ -125,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
+//    /**
+//     * This method displays the given text on the screen.
+//     */
+//    private void displayMessage(String message) {
+//        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+//        orderSummaryTextView.setText(message);
+//    }
 
 }
