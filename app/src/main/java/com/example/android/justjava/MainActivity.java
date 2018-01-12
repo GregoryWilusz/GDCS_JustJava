@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 
 /**
  * This app displays an order form to order coffee.
@@ -78,11 +80,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(String name, int coffeePrice, boolean hasWhippedCream, boolean hasChocolate) {
         int price = calculatePrice(coffeePrice, hasWhippedCream, hasChocolate);
-        String orderSummary = getString(R.string.name) + name +
-                "\n" + getString(R.string.add_whipped_cream) + hasWhippedCream +
-                "\n" + getString(R.string.add_chocolate) + hasChocolate +
-                "\n" + getString(R.string.quantity_text) + quantity +
-                "\n" + getString(R.string.total) + price + "\n" + getString(R.string.thank_you);
+        String orderSummary = getString(R.string.name, name) +
+                "\n" + getString(R.string.add_whipped_cream, hasWhippedCream) +
+                "\n" + getString(R.string.add_chocolate, hasChocolate) +
+                "\n" + getString(R.string.quantity_text, quantity) +
+                "\n" + getString(R.string.total, NumberFormat.getCurrencyInstance().format(price)) + "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
 

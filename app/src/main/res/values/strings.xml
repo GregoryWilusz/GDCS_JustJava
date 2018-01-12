@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 <string name="app_name">Just Java</string>
 
 <string name="name_placeholder">Enter your name</string>
@@ -17,11 +17,11 @@
 
 <string name="subject">Just Java order for </string>
 
-<string name="name">Name: </string>
-<string name="add_whipped_cream">Add whipped cream? </string>
-<string name="add_chocolate">Add chocolate? </string>
-<string name="quantity_text">Quantity: </string>
-<string name="total">Total: $</string>
+<string name="name">Name: <xliff:g id="name" example="Greg">%s</xliff:g></string>
+<string name="add_whipped_cream">Add whipped cream? <xliff:g id="hasWhippedCream" example="true">%b</xliff:g></string>
+<string name="add_chocolate">Add chocolate? <xliff:g id="hasChocolate" example="false">%b</xliff:g></string>
+<string name="quantity_text">Quantity: <xliff:g id="quantity" example="3">%d</xliff:g></string>
+<string name="total">"Total:  $<xliff:g id="price" example="16zł">%s</xliff:g> "</string>
 <string name="thank_you">Thank You!</string>
 
 <string name="toast_max_ordered">You cannot order more than 10 cups of coffee.</string>

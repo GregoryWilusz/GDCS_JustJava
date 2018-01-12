@@ -15,11 +15,11 @@
     <!-- Text display in the chocolate topping checkbox [CHAR LIMIT=20] -->
     <string name="checkBoxWhippedCreamTopping">Bita śmietana</string>
     <string name="subject">"Zamówienie z aplikacji Tylko Java dla "</string>
-    <string name="name">"Imię: "</string>
-    <string name="add_whipped_cream">"Dodać bitą śmietanę? "</string>
-    <string name="add_chocolate">"Dodać czekoladę? "</string>
-    <string name="quantity_text">"Ilość: "</string>
-    <string name="total">"Koszt całkowity (zł): "</string>
+    <string name="name">"Imię: <xliff:g id="name" example="Greg">%s</xliff:g>"</string>
+    <string name="add_whipped_cream">Dodać bitą śmietanę? <xliff:g id="hasWhippedCream" example="true">%b</xliff:g></string>
+    <string name="add_chocolate">Dodać czekoladę? <xliff:g id="hasChocolate" example="false">%b</xliff:g></string>
+    <string name="quantity_text">Ilość: <xliff:g id="quantity" example="3">%d</xliff:g></string>
+    <string name="total">Koszt całkowity: <xliff:g id="price" example="16zł">%s</xliff:g></string>
     <string name="thank_you">Dziękujemy!</string>
     <string name="toast_max_ordered">Nie możesz zamówić więcej niż 10 kubków kawy.</string>
     <string name="toast_min_ordered">Nie możesz mieć mniej niż kubek kawy. To nie ma sensu :-)</string>
