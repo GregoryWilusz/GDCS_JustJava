@@ -14,8 +14,10 @@
     <string name="checkBoxChocolateTopping">Czekolada</string>
     <!-- Text display in the chocolate topping checkbox [CHAR LIMIT=20] -->
     <string name="checkBoxWhippedCreamTopping">Bita śmietana</string>
-    <string name="subject">"Zamówienie z aplikacji Tylko Java dla "</string>
-    <string name="name">"Imię: <xliff:g id="name" example="Greg">%s</xliff:g>"</string>
+
+    <string name="subject">Zamówienie z aplikacji Tylko Java dla <xliff:g id="name" example="Greg">%s</xliff:g></string>
+
+    <string name="name">Imię: <xliff:g id="name" example="Greg">%s</xliff:g></string>
     <string name="add_whipped_cream">Dodać bitą śmietanę? <xliff:g id="hasWhippedCream" example="true">%b</xliff:g></string>
     <string name="add_chocolate">Dodać czekoladę? <xliff:g id="hasChocolate" example="false">%b</xliff:g></string>
     <string name="quantity_text">Ilość: <xliff:g id="quantity" example="3">%d</xliff:g></string>

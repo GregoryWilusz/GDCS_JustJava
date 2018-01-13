@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         String emailContent = createOrderSummary(customerName, coffeePrice, hasWhippedCream, hasChocolate);
-        String emailSubject = getString(R.string.subject) + customerName;
+        String emailSubject = getString(R.string.subject, customerName);
         composeEmailWithOrderSummary(emailContent, emailSubject);
     }
 
